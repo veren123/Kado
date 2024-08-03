@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy birthday kakak</title>
+    <link rel="icon" href="logo.jfif">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    /* Watermark styling */
+.watermark {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    font-size: 18px;
+    color: rgba(0, 0, 0, 0.3);
+    transform: rotate(-30deg);
+    pointer-events: none;
+    z-index: 1000;
+}
+
+/* Header styling */
+header {
+    background: #333;
+    color: #fff;
+    padding: 10px 20px;
+    position: relative;
+}
+
+/* Logo styling */
+header b {
+    font-size: 24px;
+    font-weight: bold;
+    position: relative;
+    display: inline-block;
+    padding: 5px;
+}
+
+/* Glitch effect for the logo */
+header b::before {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #ff0000;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    animation: glitch 1s infinite;
+}
+
+@keyframes glitch {
+    0% {
+        clip: rect(0, 0, 0, 0);
+    }
+    50% {
+        clip: rect(0, 0, 0, 0);
+        transform: translate(5px, 5px);
+    }
+    100% {
+        clip: rect(0, 0, 0, 0);
+        transform: translate(-5px, -5px);
+    }
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Marquee styling */
+marquee {
+    display: block;
+    background: #ffddc1;
+    color: #333;
+    padding: 10px;
+    text-align: center;
+    font-size: 18px;
+}
+
+/* Gift box styling */
+.gift-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    position: relative;
+}
+
+.gift-box {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    background: #e67e22;
+    border: 5px solid #d35400;
+    border-radius: 10px;
+    perspective: 1000px;
+}
+
+.lid, .ribbon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: #c0392b;
+    border-radius: 10px;
+}
+
+.lid {
+    top: -10px;
+    transform-origin: top;
+    transition: transform 0.5s;
+}
+
+.ribbon {
+    top: 0;
+    height: 10px;
+    background: #e74c3c;
+    border-radius: 5px;
+}
+
+.body {
+    height: 100%;
+    padding: 20px;
+    color: #fff;
+    overflow-y: auto;
+    background: #2c3e50;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transform: translateY(0);
+    transition: transform 0.5s, opacity 0.5s, visibility 0.5s;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.gift-box.open .lid {
+    transform: rotateX(120deg);
+}
+
+.gift-box.open .body {
+    transform: translateY(-50px);
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Button styling */
+button {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    background: #27ae60;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s, opacity 0.5s;
+}
+
+button:hover {
+    background: #2ecc71;
+}
+
+/* Fireworks animation */
+#fireworks {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 10;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.firework {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: radial-gradient(circle, #fff 50%, transparent 50%);
+    border-radius: 50%;
+    animation: explode 1.5s ease-out infinite;
+    animation-delay: calc(-1.5s * var(--i));
+}
+
+.firework:nth-child(1) {
+    --i: 0;
+    top: 20%;
+    left: 30%;
+    background: radial-gradient(circle, #ff0000 50%, transparent 50%);
+}
+
+.firework:nth-child(2) {
+    --i: 1;
+    top: 50%;
+    left: 50%;
+    background: radial-gradient(circle, #00ff00 50%, transparent 50%);
+}
+
+.firework:nth-child(3) {
+    --i: 2;
+    top: 30%;
+    left: 70%;
+    background: radial-gradient(circle, #0000ff 50%, transparent 50%);
+}
+
+.firework:nth-child(4) {
+    --i: 3;
+    top: 60%;
+    left: 40%;
+    background: radial-gradient(circle, #ffff00 50%, transparent 50%);
+}
+
+@keyframes explode {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(5);
+        opacity: 0;
+    }
+}
+
+.hidden {
+    display: none;
+}
+</style>
+<body>
+    <header>
+        <b data-text="kakak">kakak</b>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Kado</a></li>
+            </ul>
+        </nav>
+    </header>
+
+     <!-- Watermark -->
+     <div class="watermark">Dibuat oleh adek tercinta</div>
+
+    <marquee>Selamat ulang tahun kakak, 😁</marquee>
+
+    <!-- Bagian kado -->
+    <div class="gift-wrapper">
+        <div class="gift-box" id="giftBox">
+            <div class="lid"></div>
+            <div class="ribbon"></div>
+            <div class="body" id="giftBody">
+                <div class="pembuka" id="giftContent">
+                    <p><strong>Selamat Ulang Tahun, Kakak!</strong> <br> <br>
+                        Di hari istimewa ini, aku ingin mengungkapkan betapa berartinya kakak bagi aku. Semoga setiap langkah
+                        yang kakak ambil dipenuhi dengan kebahagiaan dan kesuksesan. Dan jangan pernah berhenti mengejar impian.
+
+                        Selamat ulang tahun, Kak! Semoga hari ini dan seterusnya membawa kebahagiaan yang tak terhingga untuk
+                        kakak. <br> ini adalah hadiah dari adek untuk kakak karena aku nggak bisa kado
+                        apa apa jadi aku kado ini saja
+                    </p>
+                </div>
+            </div>
+            <button id="openGift">Buka Kado</button>
+        </div>
+    </div>
+    <!-- Bagian kado selesai -->
+
+
+    <div id="fireworks" class="hidden">
+        <div class="firework"></div>
+        <div class="firework"></div>
+        <div class="firework"></div>
+    </div>
+</div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+    const openButton = document.getElementById('openGift');
+    const giftBox = document.getElementById('giftBox');
+    const fireworks = document.getElementById('fireworks');
+
+    openButton.addEventListener('click', () => {
+        giftBox.classList.add('open');
+        openButton.classList.add('hidden'); // Hide the button
+        fireworks.classList.remove('hidden'); // Show fireworks
+        fireworks.style.opacity = 1; // Ensure fireworks are visible
+
+        // Create more firework elements dynamically
+        for (let i = 0; i < 20; i++) {
+            const firework = document.createElement('div');
+            firework.classList.add('firework');
+            firework.style.top = `${Math.random() * 100}%`;
+            firework.style.left = `${Math.random() * 100}%`;
+            firework.style.background = `radial-gradient(circle, hsl(${Math.random() * 360}, 100%, 50%) 50%, transparent 50%)`;
+            firework.style.animationDuration = `${1 + Math.random() * 2}s`;
+            firework.style.animationDelay = `-${Math.random() * 2}s`;
+            fireworks.appendChild(firework);
+        }
+    });
+});
+
+
+
+    </script>
+</body>
+
+</html>
